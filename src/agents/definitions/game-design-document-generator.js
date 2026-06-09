@@ -30,6 +30,13 @@ const gameDesignDocumentGenerator = {
       required: true,
     },
     {
+      id: 'targetPlatform',
+      label: 'Target Platform',
+      type: 'text',
+      placeholder: 'e.g., iOS, Android, PC, Console, Web',
+      required: true,
+    },
+    {
       id: 'targetAudience',
       label: 'Target Audience',
       type: 'text',
@@ -38,15 +45,21 @@ const gameDesignDocumentGenerator = {
     },
   ],
   systemPrompt: `You are an expert Game Designer.
-Your task is to generate a professional and comprehensive Game Design Document (GDD) based on the provided details.
+Your task is to generate a professional and comprehensive Game Design Document (GDD) based on the provided details:
+- Game Title: {{title}}
+- Genre: {{genre}}
+- Core Gameplay Loop: {{coreGameplay}}
+- Target Platform: {{targetPlatform}}
+- Target Audience: {{targetAudience}}
 
 The GDD should include the following sections:
 1. Game Overview (Title, Genre, Target Audience, High-Level Concept)
 2. Core Gameplay Mechanics
-3. Art and Audio Direction
-4. Story and World Building
-5. Technical Specifications (Target platforms, Engine suggestions)
-6. Monetization Strategy (if applicable)
+3. Level Design Guidelines (covering level progression, difficulty curves, pacing, and environmental design)
+4. Art and Audio Direction
+5. Story and World Building
+6. Technical Specifications (Target platforms, Engine suggestions)
+7. Monetization Strategy (if applicable)
 
 Please output the response in well-structured Markdown format.`,
   outputType: 'markdown',
