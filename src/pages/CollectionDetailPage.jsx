@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, FolderPlus, Trash2, X } from 'lucide-react'
-import agents from '../agents/registry'
 import AgentCard from '../components/AgentCard'
 import CollectionAgentPicker from '../components/collections/CollectionAgentPicker'
+import { useAgents } from '../lib/useAgents'
 import {
   MAX_AGENTS_PER_COLLECTION,
   useCollections,
@@ -20,6 +20,7 @@ export default function CollectionDetailPage() {
     addAgentToCollection,
     removeAgentFromCollection,
   } = useCollections()
+  const { agents, loading, error } = useAgents()
 
   const collection = getCollectionById(id)
 
@@ -29,7 +30,7 @@ export default function CollectionDetailPage() {
 
   const agentById = useMemo(
     () => new Map(agents.map((agent) => [agent.id, agent])),
-    []
+    [agents]
   )
 
   const collectionAgents = useMemo(() => {
@@ -55,6 +56,32 @@ export default function CollectionDetailPage() {
         >
           Back to Collections
         </Link>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="animate-fade-in rounded-2xl border border-gray-200 bg-white p-10 text-center dark:border-border dark:bg-surface-card">
+        <h1 className="text-xl font-semibold text-gray-900 dark:text-text-primary">
+          Loading collection agents
+        </h1>
+        <p className="mt-2 text-sm text-gray-500 dark:text-text-secondary">
+          Preparing the agent list for this collection.
+        </p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="animate-fade-in rounded-2xl border border-red-200 bg-white p-10 text-center dark:border-red-500/30 dark:bg-surface-card">
+        <h1 className="text-xl font-semibold text-red-700 dark:text-red-300">
+          Unable to load agents
+        </h1>
+        <p className="mt-2 text-sm text-gray-500 dark:text-text-secondary">
+          Refresh the page and try opening this collection again.
+        </p>
       </div>
     )
   }

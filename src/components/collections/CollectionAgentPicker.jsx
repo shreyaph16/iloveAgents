@@ -13,7 +13,7 @@ function getMutationError(result, fallback) {
 
 export default function CollectionAgentPicker({
   collection,
-  agents,
+  agents = [],
   onAddAgent,
   onRemoveAgent,
   maxAgents = MAX_AGENTS_PER_COLLECTION,
@@ -116,7 +116,9 @@ export default function CollectionAgentPicker({
         })}
 
         {filteredAgents.length === 0 && (
-          <p className="p-4 text-sm text-gray-500 dark:text-text-secondary">No agents match your search.</p>
+          <p className="p-4 text-sm text-gray-500 dark:text-text-secondary">
+            {agents.length === 0 ? 'No agents are available yet.' : 'No agents match your search.'}
+          </p>
         )}
       </div>
     </section>

@@ -38,7 +38,7 @@
 ## Phase 6: collection detail edge cases
 
 - Resolve collections with `getCollectionById(id)`.
-- Resolve collection `agentIds` against the agent registry.
+- Resolve collection `agentIds` against agents loaded through `useAgents()`.
 - Handle missing collections with a not-found state.
 - Filter stale or missing agent IDs so deleted or renamed agents do not crash the page.
 
@@ -66,3 +66,15 @@ Validation commands run:
 
 - `npm run build`
 - `git diff --check`
+
+## Agent Loading Convention Note
+
+Agent Collections pages now use `useAgents()` instead of importing directly from `src/agents/registry.js`. Collection detail builds `agentById` from the hook-provided `agents` array and renders safe loading/error states while the provider is resolving agent definitions. The collections overview also uses the hook for preview names and keeps saved collection data visible if agent previews are loading or unavailable.
+
+Validation commands run:
+
+- `npm run build`
+- `git diff --check`
+- direct registry import search for Agent Collections files
+
+Remaining direct registry imports are existing non-collection code paths, including `useAgents`, `HomePage`, `AgentPage`, workflow pages, `Sidebar`, and `SuggestedChainPills`; these were intentionally left unchanged.
