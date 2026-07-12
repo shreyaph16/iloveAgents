@@ -936,8 +936,8 @@ export default function AgentRunner({ agent }) {
   </div>
 )}
           </ErrorBoundary>
-          <RunRating agentId={agent?.id} />
-          <div className="flex justify-end">
+          <div className="mt-4">
+            <RunRating agentId={agent.id} />
             <button
               onClick={handleSendToWorkflow}
               className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold
