@@ -936,7 +936,7 @@ export default function AgentRunner({ agent }) {
   </div>
 )}
           </ErrorBoundary>
-          <RunRating />
+          <RunRating agentId={agent?.id} />
           <div className="flex justify-end">
             <button
               onClick={handleSendToWorkflow}

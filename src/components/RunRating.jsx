@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import { ThumbsUp, ThumbsDown } from 'lucide-react'
+import { useAgentRatings } from '../lib/useAgentRatings'
 
-export default function RunRating() {
-  const [rating, setRating] = useState(null) // 'up' | 'down' | null
+export default function RunRating({ agentId }) {
+  const [rating, setRating] = useState(null)
   const [submitted, setSubmitted] = useState(false)
+  
+  const { rateAgent } = useAgentRatings()
 
   const handleRate = (value) => {
     setRating(value)
     setSubmitted(true)
-    // In a real app, send to analytics or database here
+    
+    if (agentId) {
+      rateAgent(agentId, value)
+    }
   }
 
   if (submitted) {
