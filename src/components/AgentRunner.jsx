@@ -1012,6 +1012,7 @@ const handleRun = async () => {
               outputType={agent.outputType}
               agentName={agent.name}
               systemPrompt={customPrompt}
+              userMessage={buildUserMessage()}
             />
             <div className="flex items-center gap-2 mt-3">
   <button
