@@ -1,12 +1,12 @@
-const terms_and_conditions_simplifer = {
+const terms_and_conditions_simplifier = {
     id: 'terms-and-conditions-simplifier',
     name: 'Terms and Conditions Simplifier',
     description: 'Paste a website URL (or its Terms & Conditions link directly) and get the terms explained in plain English, with red flags highlighted.',
     category: 'Legal',
     icon: 'FileText',               // from lucide.dev/icons
     provider: 'any',                // 'openai' | 'anthropic' | 'gemini' | 'any'
-    defaultProvider: 'OpenRouter',
-    model: 'Gemini 2.5 Flash',
+    defaultProvider: 'openai',
+    model: 'gpt-4o',
     inputs: [
         {
             id: 'website_url',
@@ -104,4 +104,4 @@ Rules:
     outputType: 'markdown',         // markdown | text | json
 }
 
-export default terms_and_conditions_simplifer
+export default terms_and_conditions_simplifier
